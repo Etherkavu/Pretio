@@ -41,7 +41,7 @@ def main():
     elif (output == 500):
         print("Server status: 500, shutting down")
         """Succesful return of parced JSON"""
-    elif (output != 500 and output != 429):
+    elif (type(output) is  dict):
         print("Server contacted succesfully")
         with open("offers.csv", mode="w", encoding="utf-8", newline='') as csv_file: 	#encoding important for being able to handle non english characters
             fieldnames = ["active", "cap", "name", "payout", "platform"]				#CSV file collumns, matches JSON structure 
