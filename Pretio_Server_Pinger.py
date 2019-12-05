@@ -28,8 +28,6 @@ def ping():
         return 429         
     elif response.status_code == 500:
         return 500
-    else:
-        return None
 
 """Used for sort, converts payout field to a float to handle decimal values"""
 def myFunc(e):
@@ -39,7 +37,6 @@ def main():
     output = ping()
     """if server gives status code of 429, wait 60 seconds and retry"""
     if (output == 429):
-		# print("Server status: 429")
         time.sleep(60)
         main()
         """if server gives status code of 500, leave message and terminate"""
@@ -55,9 +52,7 @@ def main():
             for (k, v)in output.items():
                 v.sort(reverse=True, key=myFunc)
                 for l in v:
-                    # print(str(l))
                     writer.writerow(l)
-    else:
-        print("Unknown server error")
+					
 main()
 print("Ping complete")
