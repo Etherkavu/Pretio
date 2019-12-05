@@ -24,10 +24,8 @@ def ping():
     response = requests.get(api_url, headers=headers)
     if response.status_code == 200:
         return json.loads(response.content.decode('utf-8'))
-    elif response.status_code == 429:
-        return 429         
-    elif response.status_code == 500:
-        return 500
+	else:
+        return response.status_code
 
 """Used for sort, converts payout field to a float to handle decimal values"""
 def myFunc(e):
@@ -53,6 +51,7 @@ def main():
                 v.sort(reverse=True, key=myFunc)
                 for l in v:
                     writer.writerow(l)
-					
-main()
+    else:
+        print("Server code error: " + output)
+Main()
 print("Ping complete")
